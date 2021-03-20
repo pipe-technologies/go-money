@@ -690,7 +690,10 @@ func TestCustomUnmarshal(t *testing.T) {
 
 func TestFromMajorUnits(t *testing.T) {
 	amount, _ := decimal.NewFromString("100.32")
-	money := FromMajorUnits(amount, "USD")
+	money, err := FromMajorUnits(amount, "USD")
+	if err != nil {
+		t.Error(err)
+	}
 
 	expected := int64(10032)
 	got := money.Amount()
@@ -699,7 +702,10 @@ func TestFromMajorUnits(t *testing.T) {
 	}
 
 	amount, _ = decimal.NewFromString("55365")
-	money = FromMajorUnits(amount, "BIF")
+	money, err = FromMajorUnits(amount, "BIF")
+	if err != nil {
+		t.Error(err)
+	}
 
 	expected = int64(55365)
 	got = money.Amount()
@@ -708,7 +714,10 @@ func TestFromMajorUnits(t *testing.T) {
 	}
 
 	amount, _ = decimal.NewFromString("12.345")
-	money = FromMajorUnits(amount, "BHD")
+	money, err = FromMajorUnits(amount, "BHD")
+	if err != nil {
+		t.Error(err)
+	}
 
 	expected = int64(12345)
 	got = money.Amount()
@@ -719,7 +728,10 @@ func TestFromMajorUnits(t *testing.T) {
 
 func TestFromMajorUnitsRounding(t *testing.T) {
 	amount, _ := decimal.NewFromString("100.3234")
-	money := FromMajorUnits(amount, "USD")
+	money, err := FromMajorUnits(amount, "USD")
+	if err != nil {
+		t.Error(err)
+	}
 
 	expected := int64(10032)
 	got := money.Amount()
@@ -728,11 +740,24 @@ func TestFromMajorUnitsRounding(t *testing.T) {
 	}
 
 	amount, _ = decimal.NewFromString("12.346")
-	money = FromMajorUnits(amount, "USD")
+	money, err = FromMajorUnits(amount, "USD")
+	if err != nil {
+		t.Error(err)
+	}
 
 	expected = int64(1234)
 	got = money.Amount()
 	if got != expected {
 		t.Errorf("Expected %v got %v", expected, got)
+	}
+}
+
+func TestBorkedCurrencyCode(t *testing.T) {
+	money, err := FromMinorUnits(1000, "XYZ")
+	if err == nil {
+		t.Errorf("expected err to be not nil")
+	}
+	if money != nil {
+		t.Errorf("expected *Money to be nil")
 	}
 }

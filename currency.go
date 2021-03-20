@@ -238,6 +238,15 @@ func (c *Currency) get() *Currency {
 	return c.getDefault()
 }
 
+func (c *Currency) getMaybe() *Currency {
+	curr, ok := currencies[c.Code]
+	if !ok {
+		return nil
+	}
+
+	return curr
+}
+
 func (c *Currency) equals(oc *Currency) bool {
 	return c.Code == oc.Code
 }

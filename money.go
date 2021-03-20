@@ -57,15 +57,23 @@ func New(amount int64, code string) *Money {
 	}
 }
 
-func FromMajorUnits(amount decimal.Decimal, code string) *Money {
+func FromMajorUnits(amount decimal.Decimal, code string) (*Money, error) {
 	currency := newCurrency(code).get()
 	multiple := decimal.NewFromFloat(math.Pow10(currency.Fraction))
 	minorUnits := amount.Mul(multiple)
-	return New(minorUnits.BigInt().Int64(), code)
+	return FromMinorUnits(minorUnits.BigInt().Int64(), code)
 }
 
-func FromMinorUnits(amount int64, code string) *Money {
-	return New(amount, code)
+func FromMinorUnits(amount int64, code string) (*Money, error) {
+	currency := newCurrency(code).getMaybe()
+	if currency == nil {
+		return nil, errors.New("Could not find currency: " + code)
+	}
+
+	return &Money{
+		amount:   &Amount{val: amount},
+		currency: currency,
+	}, nil
 }
 
 // Currency returns the currency used by Money.
