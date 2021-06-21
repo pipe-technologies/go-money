@@ -117,6 +117,8 @@ var currencies = map[string]*Currency{
 	"MMK": {Decimal: ".", Thousand: ",", Code: "MMK", Fraction: 2, NumericCode: "104", Grapheme: "K", Template: "$1"},
 	"MNT": {Decimal: ".", Thousand: ",", Code: "MNT", Fraction: 2, NumericCode: "496", Grapheme: "\u20ae", Template: "$1"},
 	"MOP": {Decimal: ".", Thousand: ",", Code: "MOP", Fraction: 2, NumericCode: "446", Grapheme: "P", Template: "1 $"},
+	// The Fractionf for MRO is wrong, it's actually not a decimal currency. But let's ignore that for now.
+	"MRO": {Decimal: ".", Thousand: ",", Code: "MRO", Fraction: 0, NumericCode: "", Grapheme: "UM", Template: "1 $"},
 	"MUR": {Decimal: ".", Thousand: ",", Code: "MUR", Fraction: 2, NumericCode: "480", Grapheme: "\u20a8", Template: "$1"},
 	"MVR": {Decimal: ".", Thousand: ",", Code: "MVR", Fraction: 2, NumericCode: "462", Grapheme: "MVR", Template: "1 $"},
 	"MWK": {Decimal: ".", Thousand: ",", Code: "MWK", Fraction: 2, NumericCode: "454", Grapheme: "MK", Template: "$1"},
@@ -191,6 +193,8 @@ var currencies = map[string]*Currency{
 	"ZMK": {Decimal: ".", Thousand: ",", Code: "ZMW", Fraction: 2, NumericCode: "967", Grapheme: "ZK", Template: "$1"},
 	"ZMW": {Decimal: ".", Thousand: ",", Code: "ZMW", Fraction: 2, NumericCode: "967", Grapheme: "ZK", Template: "$1"},
 	"ZWD": {Decimal: ".", Thousand: ",", Code: "ZWD", Fraction: 2, NumericCode: "932", Grapheme: "Z$", Template: "$1"},
+	// ZWL is the latest incarnation of the Zimbabwean_dollar (since 2009)
+	"ZWL": {Decimal: ".", Thousand: ",", Code: "ZWL", Fraction: 2, NumericCode: "932", Grapheme: "Z$", Template: "$1"},
 }
 
 // AddCurrency lets you insert or update currency in currencies list.
