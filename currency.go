@@ -111,6 +111,8 @@ var currencies = map[string]*Currency{
 	"LYD": {Decimal: ".", Thousand: ",", Code: "LYD", Fraction: 3, NumericCode: "434", Grapheme: ".\u062f.\u0644", Template: "1 $"},
 	"MAD": {Decimal: ".", Thousand: ",", Code: "MAD", Fraction: 2, NumericCode: "504", Grapheme: ".\u062f.\u0645", Template: "1 $"},
 	"MDL": {Decimal: ".", Thousand: ",", Code: "MDL", Fraction: 2, NumericCode: "498", Grapheme: "lei", Template: "1 $"},
+	// The Fractionf for MGA is wrong, it's actually not a decimal currency. But let's ignore that for now.
+	"MGA": {Decimal: ".", Thousand: ",", Code: "MGA", Fraction: 0, NumericCode: "", Grapheme: "Ar", Template: "1 $"},
 	"MKD": {Decimal: ".", Thousand: ",", Code: "MKD", Fraction: 2, NumericCode: "807", Grapheme: "\u0434\u0435\u043d", Template: "$1"},
 	"MMK": {Decimal: ".", Thousand: ",", Code: "MMK", Fraction: 2, NumericCode: "104", Grapheme: "K", Template: "$1"},
 	"MNT": {Decimal: ".", Thousand: ",", Code: "MNT", Fraction: 2, NumericCode: "496", Grapheme: "\u20ae", Template: "$1"},
@@ -185,6 +187,8 @@ var currencies = map[string]*Currency{
 	"XPF": {Decimal: ".", Thousand: ",", Code: "XPF", Fraction: 0, NumericCode: "953", Grapheme: "₣", Template: "1 $"},
 	"YER": {Decimal: ".", Thousand: ",", Code: "YER", Fraction: 2, NumericCode: "886", Grapheme: "\ufdfc", Template: "1 $"},
 	"ZAR": {Decimal: ".", Thousand: ",", Code: "ZAR", Fraction: 2, NumericCode: "710", Grapheme: "R", Template: "$1"},
+	// ZMK = ZMW, it's just the old code (before 2013).
+	"ZMK": {Decimal: ".", Thousand: ",", Code: "ZMW", Fraction: 2, NumericCode: "967", Grapheme: "ZK", Template: "$1"},
 	"ZMW": {Decimal: ".", Thousand: ",", Code: "ZMW", Fraction: 2, NumericCode: "967", Grapheme: "ZK", Template: "$1"},
 	"ZWD": {Decimal: ".", Thousand: ",", Code: "ZWD", Fraction: 2, NumericCode: "932", Grapheme: "Z$", Template: "$1"},
 }
