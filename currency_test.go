@@ -70,6 +70,14 @@ func TestCurrency_AddCurrency(t *testing.T) {
 	}
 }
 
+func TestCurrency_FormatCA(t *testing.T) {
+	c := newCurrency("CAD").get()
+	got := c.Formatter().Format(100)
+	if got != "CA$1.00" {
+		t.Errorf("something %v", got)
+	}
+}
+
 func TestCurrency_GetCurrency(t *testing.T) {
 	code := "KLINGONDOLLAR"
 	desired := Currency{Decimal: ".", Thousand: ",", Code: code, Fraction: 2, Grapheme: "$", Template: "$1"}
